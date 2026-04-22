@@ -1,0 +1,149 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f8f9fa;
+  color: #212529;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  padding: 1.5rem 1rem;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.site-title {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #a78bfa;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+}
+
+.nav-divider { border: none; border-top: 1px solid #2d2d4e; margin: 0.8rem 0; }
+
+.nav-section { margin-bottom: 1.2rem; }
+
+.nav-section-title {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+  padding: 0 0.5rem;
+  margin-bottom: 0.3rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.nav-section-title::-webkit-details-marker { display: none; }
+
+.nav-section[open] .nav-section-title { color: #a78bfa; }
+
+.sidebar ul { list-style: none; }
+
+.sidebar ul li { margin-bottom: 0.2rem; }
+
+.sidebar ul li a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: block;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.sidebar ul li a:hover {
+  background: #2d2d4e;
+  color: #fff;
+}
+
+.content {
+  flex: 1;
+  padding: 2.5rem 3rem;
+  max-width: 800px;
+}
+
+article img { width: 100%; height: auto; }
+
+article h1, article h2, article h3 {
+  margin-top: 1.8rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.3;
+}
+
+article h1 { font-size: 2rem; border-bottom: 2px solid #e9ecef; padding-bottom: 0.4rem; }
+article h2 { font-size: 1.4rem; }
+article h3 { font-size: 1.1rem; }
+
+article p { margin-bottom: 1rem; line-height: 1.7; }
+
+article code {
+  background: #e9ecef;
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-size: 0.88em;
+  font-family: "Fira Code", "Cascadia Code", monospace;
+}
+
+article pre {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  padding: 1rem 1.2rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+article pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: 0.9rem;
+}
+
+article ul, article ol {
+  margin: 0 0 1rem 1.5rem;
+  line-height: 1.7;
+}
+
+article blockquote {
+  border-left: 4px solid #a78bfa;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: #f1f0ff;
+  color: #4a4a6a;
+}
+
+article table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+article th, article td {
+  border: 1px solid #dee2e6;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+article th { background: #e9ecef; font-weight: 600; }
+
+.doc-list { list-style: none; margin: 1rem 0; }
+.doc-list li { margin-bottom: 0.5rem; }
+.doc-list li a { color: #6d28d9; font-size: 1rem; }

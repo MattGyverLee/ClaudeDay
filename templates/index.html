@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Claude Day Docs{% endblock %}
+{% block content %}
+<h1>Workshop Docs</h1>
+<p>Select a topic from the sidebar, or jump to a section below:</p>
+{% for section in sections %}
+<h2>{{ section.title }}</h2>
+{% if section.docs %}
+<ul class="doc-list">
+  {% for doc in section.docs %}
+  <li><a href="/docs/{{ section.folder }}/{{ doc.slug }}">{{ doc.title }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p><em>Coming soon.</em></p>
+{% endif %}
+{% endfor %}
+{% endblock %}

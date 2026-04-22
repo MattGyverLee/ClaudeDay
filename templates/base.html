@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Claude Day Docs{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="layout">
+    <nav class="sidebar">
+      <a href="/" class="site-title">Claude Day</a>
+      {% for section in sections %}
+      {% if not loop.first %}<hr class="nav-divider">{% endif %}
+      <details class="nav-section" open>
+        <summary class="nav-section-title">{{ section.title }}</summary>
+        {% if section.docs %}
+        <ul>
+          {% for doc in section.docs %}
+          <li><a href="/docs/{{ section.folder }}/{{ doc.slug }}">{{ doc.title }}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </details>
+      {% endfor %}
+    </nav>
+    <main class="content">
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+  <script>
+    (function () {
+      let known = null;
+      setInterval(async () => {
+        try {
+          const r = await fetch("/api/mtime");
+          const { mtime } = await r.json();
+          if (known === null) { known = mtime; return; }
+          if (mtime !== known) location.reload();
+        } catch (_) {}
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>
