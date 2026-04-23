@@ -1,55 +1,108 @@
 # Install
 
-For this work, you will need to install VSCode, Claude Desktop, Claude Code, and the Github Extensions inside VSCode.
+For this workshop you will need VS Code, Claude Desktop, the Claude Code extension, Git, and Python.
 
-## VS Code Installation
+## 1. VS Code
 
-code.visualstudio.com
+Download from [code.visualstudio.com](https://code.visualstudio.com/download).
 
-Overview of VS Code Interface
+**Minimum:** VS Code **1.98.0** or higher (required for Claude Code).
 
-## Installing Claude Code in VS Code (First Time)
+## 2. Git for Windows
 
-**Prerequisites**
+Download from [git-scm.com/download/win](https://git-scm.com/download/win), or via winget:
 
-- VS Code 1.98.0 or higher
-- A Claude account (Pro, Max, Team, or Enterprise subscription)
+```
+winget install --id Git.Git -e --source winget
+```
 
-**Step 1 — Install the Extension**
+### Key options during install
 
-In VS Code, press `Ctrl+Shift+X`, search **"Claude Code"**, click **Install**.
+- Select **"Use Visual Studio Code as Git's default editor"**
+- Leave PATH settings on default so Git is available in the terminal
 
-Or via command line:
+### Add Git Bash to Windows PATH
 
-`code --install-extension anthropic.claude-code`
+Claude Code requires Git Bash internally. If it isn't detected automatically, add it manually:
 
-**Step 2 — Sign In**
+1. Press `Win + S`, search **"Environment Variables"**, open **"Edit the system environment variables"**
+2. Click **Environment Variables...**
+3. Under **System variables**, select **Path** → click **Edit**
+4. Click **New** and add: `C:\Program Files\Git\bin`
+5. Click **OK** on all dialogs
+6. Restart any open terminals or VS Code
 
-- Click the **Spark icon** in the top-right toolbar (or bottom status bar)
-- Click **Sign in** → complete authorization in your browser with your Claude account
+If Claude Code still can't find it, set the path explicitly in `.claude/settings.json`:
 
-**Step 3 — Start Using It**
+```json
+{
+  "env": {
+    "CLAUDE_CODE_GIT_BASH_PATH": "C:\\Program Files\\Git\\bin\\bash.exe"
+  }
+}
+```
 
-- Type a question in the Claude Code panel
-- Selected text in your editor is automatically shared as context
-- Use `Alt+K` (Windows) / `Option+K` (Mac) to @-mention specific files
+## 3. Python
 
-**No API key required** — account login handles authentication automatically.
+Download from [python.org/downloads](https://www.python.org/downloads/). Python 3.12 is recommended for stability.
 
-## Create a project directory
+> **Critical:** Check **"Add Python to PATH"** at the bottom of the installer — this is the most common setup mistake.
 
-C:\projects\ or \apps or ??
+## 4. Claude Desktop
 
-Create subfolders for specific projects you are working on.
+Download from [claude.ai/download](https://claude.ai/download).
 
-## Install Git for Windows inside VS code
+> **Important:** Download only from the official URL above. The Microsoft Store version does **not** support agents or Cowork.
 
-Note: Use VSCode as default Git Editor, otherwise use defaults.
+Windows 10 or later. Admin privileges required for full agent support.
 
-## Install Python 3.13 or other 3X version
+### Enable Windows Virtual Platform (required for Cowork)
 
-https://www.python.org/downloads/ 
+Cowork features require Windows virtualization to be enabled. To turn it on:
 
-### Install Claude Desktop
+1. Press `Win + S`, search **"Turn Windows features on or off"**, open it
+2. Check **Virtual Machine Platform**
+3. Click **OK** and restart when prompted
 
-https://support.claude.com/en/articles/10065433-install-claude-desktop
+Or enable it from PowerShell (run as Administrator):
+
+```powershell
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+
+Then restart your machine.
+
+## 5. Claude Code (VS Code Extension)
+
+### Prerequisites
+
+- VS Code **1.98.0** or higher
+- An Anthropic account (Pro, Max, Team, or Enterprise subscription)
+
+### Step 1 — Install the Extension
+
+Open the Extensions view (`Ctrl+Shift+X`), search **"Claude Code"** (published by Anthropic), click **Install**.
+
+Or via terminal:
+
+```bash
+code --install-extension anthropic.claude-code
+```
+
+### Step 2 — Sign In
+
+On first open, Claude Code will prompt you to sign in. Click **Sign in** and complete the OAuth flow in your browser.
+
+The **Spark icon** in the top-right toolbar or bottom status bar opens the panel at any time.
+
+### Step 3 — Start Using It
+
+- Type a question or task in the Claude Code panel
+- Text selected in your editor is automatically shared as context
+- Use `Alt+K` (Windows) / `Option+K` (Mac) to @-mention specific files
+
+No API key required — your Claude account handles authentication automatically.
+
+## 6. Set Up a Project Folder
+
+Create a folder for your projects (e.g. `C:\projects\` or `~/projects/`) and create subfolders for each project. Claude Code works inside whichever folder you open in VS Code.

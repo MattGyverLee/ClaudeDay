@@ -8,7 +8,8 @@
 </head>
 <body>
   <div class="layout">
-    <nav class="sidebar">
+    <button class="sidebar-toggle" id="sidebarToggle" title="Toggle sidebar">&#8942;</button>
+    <nav class="sidebar" id="sidebar">
       <a href="/" class="site-title">Claude Day</a>
       {% for section in sections %}
       {% if not loop.first %}<hr class="nav-divider">{% endif %}
@@ -30,6 +31,19 @@
   </div>
   <script>
     (function () {
+      const sidebar = document.getElementById('sidebar');
+      const toggle = document.getElementById('sidebarToggle');
+      const COLLAPSED = 'sidebar-collapsed';
+
+      if (localStorage.getItem(COLLAPSED) === '1') {
+        sidebar.classList.add(COLLAPSED);
+      }
+
+      toggle.addEventListener('click', () => {
+        sidebar.classList.toggle(COLLAPSED);
+        localStorage.setItem(COLLAPSED, sidebar.classList.contains(COLLAPSED) ? '1' : '0');
+      });
+
       let known = null;
       setInterval(async () => {
         try {

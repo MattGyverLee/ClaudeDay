@@ -2,6 +2,8 @@
 
 The Claude API lets you integrate Claude into your own applications.
 
+API Usage is pay-as-you-go.
+
 ## Quick Start
 
 ```python

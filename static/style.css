@@ -21,6 +21,32 @@ body {
   top: 0;
   height: 100vh;
   overflow-y: auto;
+  transition: width 0.25s ease, padding 0.25s ease;
+}
+
+.sidebar.sidebar-collapsed {
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.sidebar-toggle {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  background: #1a1a2e;
+  color: #a78bfa;
+  border: none;
+  border-radius: 4px;
+  width: 28px;
+  height: 28px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .site-title {
